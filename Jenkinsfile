@@ -26,16 +26,6 @@ pipeline {
       }
     }
 
-    stage('Deploy "adservice" App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl apply -f myweb.yaml'
-          }
-        }
-      }
-    }
     stage('Kaniko Build & Push "cartservice" Image') {
       steps {
         container('kaniko') {
@@ -50,16 +40,6 @@ pipeline {
       }
     }
 
-    stage('Deploy "cartservice" App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl apply -f myweb.yaml'
-          }
-        }
-      }
-    }
     stage('Kaniko Build & Push "checkoutservice" Image') {
       steps {
         container('kaniko') {
@@ -74,16 +54,6 @@ pipeline {
       }
     }
 
-    stage('Deploy "checkoutservice" App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl apply -f myweb.yaml'
-          }
-        }
-      }
-    }
     stage('Kaniko Build & Push "currencyservice" Image') {
       steps {
         container('kaniko') {
@@ -98,16 +68,6 @@ pipeline {
       }
     }
 
-    stage('Deploy "currencyservice" App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl apply -f myweb.yaml'
-          }
-        }
-      }
-    }
     stage('Kaniko Build & Push "emailservice" Image') {
       steps {
         container('kaniko') {
@@ -122,16 +82,6 @@ pipeline {
       }
     }
 
-    stage('Deploy "emailservice" App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl apply -f myweb.yaml'
-          }
-        }
-      }
-    }
     stage('Kaniko Build & Push "frontend" Image') {
       steps {
         container('kaniko') {
@@ -146,16 +96,6 @@ pipeline {
       }
     }
 
-    stage('Deploy "frontend" App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl apply -f myweb.yaml'
-          }
-        }
-      }
-    }
     stage('Kaniko Build & Push "loadgenerator" Image') {
       steps {
         container('kaniko') {
@@ -170,16 +110,6 @@ pipeline {
       }
     }
 
-    stage('Deploy "loadgenerator" App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl apply -f myweb.yaml'
-          }
-        }
-      }
-    }
     stage('Kaniko Build & Push "paymentservice" Image') {
       steps {
         container('kaniko') {
@@ -194,16 +124,6 @@ pipeline {
       }
     }
 
-    stage('Deploy "paymentservice" App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl apply -f myweb.yaml'
-          }
-        }
-      }
-    }
     stage('Kaniko Build & Push "productcatalogservice" Image') {
       steps {
         container('kaniko') {
@@ -218,16 +138,6 @@ pipeline {
       }
     }
 
-    stage('Deploy "productcatalogservice" App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl apply -f myweb.yaml'
-          }
-        }
-      }
-    }
     stage('Kaniko Build & Push "recommendationservice" Image') {
       steps {
         container('kaniko') {
@@ -242,16 +152,6 @@ pipeline {
       }
     }
 
-    stage('Deploy "recommendationservice" App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl apply -f myweb.yaml'
-          }
-        }
-      }
-    }
     stage('Kaniko Build & Push "shippingservice" Image') {
       steps {
         container('kaniko') {
@@ -266,12 +166,12 @@ pipeline {
       }
     }
 
-    stage('Deploy "shippingservice" App to Kubernetes') {     
+    stage('Deploy App to Kubernetes') {     
       steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl apply -f myweb.yaml'
+            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" kubernetes-manifests.yaml'
+            sh 'kubectl apply -f release/kubernetes-manifestseb.yaml'
           }
         }
       }
