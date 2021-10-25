@@ -26,12 +26,6 @@ pipeline {
       }
     }
 
-  agent {
-    kubernetes {
-      yamlFile 'builder.yaml'
-    }
-  }  
-
     stage('Kaniko Build & Push "cartservice" Image') {
       steps {
         container('kaniko') {
@@ -45,12 +39,6 @@ pipeline {
         }
       }
     }
-
-  agent {
-    kubernetes {
-      yamlFile 'builder.yaml'
-    }
-  }  
 
     stage('Kaniko Build & Push "checkoutservice" Image') {
       steps {
@@ -66,12 +54,6 @@ pipeline {
       }
     }
 
-  agent {
-    kubernetes {
-      yamlFile 'builder.yaml'
-    }
-  }  
-
     stage('Kaniko Build & Push "currencyservice" Image') {
       steps {
         container('kaniko') {
@@ -85,12 +67,6 @@ pipeline {
         }
       }
     }
-
-  agent {
-    kubernetes {
-      yamlFile 'builder.yaml'
-    }
-  }  
 
     stage('Kaniko Build & Push "emailservice" Image') {
       steps {
@@ -106,12 +82,6 @@ pipeline {
       }
     }
 
-  agent {
-    kubernetes {
-      yamlFile 'builder.yaml'
-    }
-  }  
-
     stage('Kaniko Build & Push "frontend" Image') {
       steps {
         container('kaniko') {
@@ -125,12 +95,6 @@ pipeline {
         }
       }
     }
-
-  agent {
-    kubernetes {
-      yamlFile 'builder.yaml'
-    }
-  }  
 
     stage('Kaniko Build & Push "loadgenerator" Image') {
       steps {
@@ -146,12 +110,6 @@ pipeline {
       }
     }
 
-  agent {
-    kubernetes {
-      yamlFile 'builder.yaml'
-    }
-  }  
-
     stage('Kaniko Build & Push "paymentservice" Image') {
       steps {
         container('kaniko') {
@@ -165,12 +123,6 @@ pipeline {
         }
       }
     }
-
-  agent {
-    kubernetes {
-      yamlFile 'builder.yaml'
-    }
-  }  
 
     stage('Kaniko Build & Push "productcatalogservice" Image') {
       steps {
@@ -186,12 +138,6 @@ pipeline {
       }
     }
 
-  agent {
-    kubernetes {
-      yamlFile 'builder.yaml'
-    }
-  }  
-
     stage('Kaniko Build & Push "recommendationservice" Image') {
       steps {
         container('kaniko') {
@@ -206,12 +152,6 @@ pipeline {
       }
     }
 
-  agent {
-    kubernetes {
-      yamlFile 'builder.yaml'
-    }
-  }  
-
     stage('Kaniko Build & Push "shippingservice" Image') {
       steps {
         container('kaniko') {
@@ -225,12 +165,6 @@ pipeline {
         }
       }
     }
-
-  agent {
-    kubernetes {
-      yamlFile 'deployer.yaml'
-    }
-  }  
 
     stage('Deploy App to Kubernetes') {     
       steps {
