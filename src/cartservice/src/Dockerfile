@@ -15,7 +15,7 @@
 # https://mcr.microsoft.com/v2/dotnet/sdk/tags/list
 FROM mcr.microsoft.com/dotnet/sdk:5.0.201 as builder
 WORKDIR /app
-COPY cartservice.csproj .
+COPY src/cartservice/src/cartservice.csproj .
 RUN dotnet restore cartservice.csproj -r linux-musl-x64
 COPY . .
 # Fix the issue on Debian 10: https://github.com/dotnet/dotnet-docker/issues/2470
