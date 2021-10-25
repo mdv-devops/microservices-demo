@@ -21,27 +21,21 @@ pipeline {
                              --context `pwd`/src/adservice/ \
                              --destination=marinyuk/adservice:${BUILD_NUMBER}
             '''
-            sh '''
-            /kaniko/executor --dockerfile `pwd`/src/cartservice/src/Dockerfile \
-                             --context `pwd`/src/cartservice/src/ \
-                             --destination=marinyuk/cartservice:${BUILD_NUMBER}
-            '''
           }
         }
       }
     }
-    
-    stage('Deploy "adservice" App to Kubernetes') {     
+
+    stage('Deploy App to Kubernetes') {     
       steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
             sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" kubernetes-manifests/adservice.yaml'
             sh 'kubectl apply -f kubernetes-manifests/adservice.yaml'
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" kubernetes-manifests/cartservice.yaml'
-            sh 'kubectl apply -f kubernetes-manifests/cartservice.yaml'
           }
         }
       }
-    }      
+    }
+  
   }
 }
