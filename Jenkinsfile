@@ -228,7 +228,7 @@ pipeline {
 
   agent {
     kubernetes {
-      yamlFile 'builder.yaml'
+      yamlFile 'deployer.yaml'
     }
   }  
 
