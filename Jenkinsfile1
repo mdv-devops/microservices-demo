@@ -18,7 +18,7 @@ pipeline {
           script {
             sh '''
             /kaniko/executor --dockerfile `pwd`/src/cartservice/src/Dockerfile \
-                             --context `pwd`/src/cartservice/ \
+                             --context `pwd`/src/cartservice/src/ \
                              --destination=marinyuk/cartservice:${BUILD_NUMBER}
             '''
           }
