@@ -1,0 +1,26 @@
+pipeline {
+
+  options {
+    ansiColor('xterm')
+  }
+
+  agent {
+    kubernetes {
+      yamlFile 'builder.yaml'
+    }
+  }
+
+  stages {
+
+    stage('Deploy "redis" App to Kubernetes') {     
+      steps {
+        container('kubectl') {
+          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'kubectl apply -f kubernetes-manifests/redis.yaml'
+          }
+        }
+      }
+    }
+  
+  }
+}

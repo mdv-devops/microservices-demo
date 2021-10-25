@@ -1,0 +1,41 @@
+pipeline {
+
+  options {
+    ansiColor('xterm')
+  }
+
+  agent {
+    kubernetes {
+      yamlFile 'builder.yaml'
+    }
+  }
+
+  stages {
+
+    stage('Kaniko Build & Push "currencyservice" Image') {
+      steps {
+        container('kaniko') {
+          script {
+            sh '''
+            /kaniko/executor --dockerfile `pwd`/src/currencyservice/Dockerfile \
+                             --context `pwd`/src/currencyservice/ \
+                             --destination=marinyuk/currencyservice:${BUILD_NUMBER}
+            '''
+          }
+        }
+      }
+    }
+
+    stage('Deploy "currencyservice" App to Kubernetes') {     
+      steps {
+        container('kubectl') {
+          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" kubernetes-manifests/currencyservice.yaml'
+            sh 'kubectl apply -f kubernetes-manifests/currencyservice.yaml'
+          }
+        }
+      }
+    }
+  
+  }
+}

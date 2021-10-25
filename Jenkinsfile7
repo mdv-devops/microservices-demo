@@ -1,0 +1,41 @@
+pipeline {
+
+  options {
+    ansiColor('xterm')
+  }
+
+  agent {
+    kubernetes {
+      yamlFile 'builder.yaml'
+    }
+  }
+
+  stages {
+
+    stage('Kaniko Build & Push "paymentservice" Image') {
+      steps {
+        container('kaniko') {
+          script {
+            sh '''
+            /kaniko/executor --dockerfile `pwd`/src/paymentservice/Dockerfile \
+                             --context `pwd`/src/paymentservice/ \
+                             --destination=marinyuk/paymentservice:${BUILD_NUMBER}
+            '''
+          }
+        }
+      }
+    }
+
+    stage('Deploy "paymentservice" App to Kubernetes') {     
+      steps {
+        container('kubectl') {
+          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" kubernetes-manifests/paymentservice.yaml'
+            sh 'kubectl apply -f kubernetes-manifests/paymentservice.yaml'
+          }
+        }
+      }
+    }
+  
+  }
+}
