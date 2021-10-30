@@ -12,11 +12,11 @@ pipeline {
 
   stages {
 
-    stage('Deploy Apps to Kubernetes') {     
+    stage('Deploy "redis" App to Kubernetes') {     
       steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'kubectl apply -f release/kubernetes-manifests.yaml -n microservices'
+            sh 'kubectl apply -f kubernetes-manifests/redis.yaml -n microservices'
           }
         }
       }

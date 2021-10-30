@@ -25,6 +25,17 @@ pipeline {
         }
       }
     }
+
+    stage('Deploy App to Kubernetes') {     
+      steps {
+        container('kubectl') {
+          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" kubernetes-manifests/adservice.yaml'
+            sh 'kubectl apply -f kubernetes-manifests/adservice.yaml -n microservices'
+          }
+        }
+      }
+    }
   
   }
 }

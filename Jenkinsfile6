@@ -25,6 +25,17 @@ pipeline {
         }
       }
     }
+
+    stage('Deploy "loadgenerator" App to Kubernetes') {     
+      steps {
+        container('kubectl') {
+          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" kubernetes-manifests/loadgenerator.yaml'
+            sh 'kubectl apply -f kubernetes-manifests/loadgenerator.yaml -n microservices'
+          }
+        }
+      }
+    }
   
   }
 }
