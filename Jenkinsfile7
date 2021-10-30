@@ -25,17 +25,6 @@ pipeline {
         }
       }
     }
-
-    stage('Deploy "paymentservice" App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" kubernetes-manifests/paymentservice.yaml'
-            sh 'kubectl apply -f kubernetes-manifests/paymentservice.yaml -n microservices'
-          }
-        }
-      }
-    }
   
   }
 }
