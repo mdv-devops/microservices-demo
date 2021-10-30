@@ -65,21 +65,7 @@ spec:
     port: 5000
     targetPort: 8080
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: emailservice
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
----
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -149,21 +135,6 @@ spec:
     port: 5050
     targetPort: 5050
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: checkoutservice
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -223,21 +194,6 @@ spec:
   - name: grpc
     port: 8080
     targetPort: 8080
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: recommendationservice
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -326,21 +282,6 @@ spec:
     port: 80
     targetPort: 8080
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: frontend
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
----
 apiVersion: v1
 kind: Service
 metadata:
@@ -404,21 +345,6 @@ spec:
     port: 50051
     targetPort: 50051
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: paymentservice
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -477,21 +403,6 @@ spec:
     port: 3550
     targetPort: 3550
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: productcatalogservice
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -545,21 +456,6 @@ spec:
     port: 7070
     targetPort: 7070
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: cartservice
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -605,21 +501,6 @@ spec:
           limits:
             cpu: 500m
             memory: 512Mi
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: loadgenerator
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -677,21 +558,6 @@ spec:
   - name: grpc
     port: 7000
     targetPort: 7000
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: currencyservice
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -751,21 +617,6 @@ spec:
     port: 50051
     targetPort: 50051
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: shippingservice
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -818,21 +669,6 @@ spec:
   - name: redis
     port: 6379
     targetPort: 6379
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: redis-cart
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -894,18 +730,4 @@ spec:
     port: 9555
     targetPort: 9555
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: adservice
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - honorLabels: true
-    port: web
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
----
+

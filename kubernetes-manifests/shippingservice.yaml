@@ -69,3 +69,19 @@ spec:
   - name: grpc
     port: 50051
     targetPort: 50051
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: shippingservice
+  namespace: microservices
+  labels:
+    team: rabitabank-team
+spec:
+  endpoints:
+  - honorLabels: true
+    port: web
+  selector:
+    matchLabels:
+      operated-prometheus: "true"
+---

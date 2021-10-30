@@ -67,3 +67,19 @@ spec:
   - name: grpc
     port: 5000
     targetPort: 8080
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: emailservice
+  namespace: microservices
+  labels:
+    team: rabitabank-team
+spec:
+  endpoints:
+  - honorLabels: true
+    port: web
+  selector:
+    matchLabels:
+      operated-prometheus: "true"
+---
