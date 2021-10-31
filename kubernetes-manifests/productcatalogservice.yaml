@@ -77,7 +77,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: productcatalogservice
-  namespace: monitoring
+  namespace: microservices
   labels:
     team: rabitabank-team
 spec:
