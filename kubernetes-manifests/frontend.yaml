@@ -103,6 +103,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend-external
+  labels:
+    operated-prometheus: "true"
 spec:
   type: LoadBalancer
   selector:
@@ -121,8 +123,12 @@ metadata:
     team: rabitabank-team
 spec:
   endpoints:
-  - honorLabels: true
-    port: web
+  - interval: 15s
+    port: http
+    scrapeTimeout: 15s
+  namespaceSelector:
+    matchNames:
+    - microservices
   selector:
     matchLabels:
       operated-prometheus: "true"

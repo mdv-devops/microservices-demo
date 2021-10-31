@@ -20,6 +20,7 @@ pipeline {
             /kaniko/executor --dockerfile `pwd`/src/currencyservice/Dockerfile \
                              --context `pwd`/src/currencyservice/ \
                              --destination=marinyuk/currencyservice:${BUILD_NUMBER}
+                             --destination=marinyuk/currencyservice:latest
             '''
           }
         }

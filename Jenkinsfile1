@@ -20,6 +20,7 @@ pipeline {
             /kaniko/executor --dockerfile `pwd`/src/cartservice/src/Dockerfile \
                              --context `pwd`/src/cartservice/src/ \
                              --destination=marinyuk/cartservice:${BUILD_NUMBER}
+                             --destination=marinyuk/cartservice:latest
             '''
           }
         }

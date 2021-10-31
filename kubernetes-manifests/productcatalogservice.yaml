@@ -61,6 +61,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: productcatalogservice
+  labels:
+    app: productcatalogservice
+    operated-alertmanager: "true"
 spec:
   type: ClusterIP
   selector:
@@ -70,18 +73,22 @@ spec:
     port: 3550
     targetPort: 3550
 ---
+---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: productcatalogservice
-  namespace: microservices
+  namespace: monitoring
   labels:
     team: rabitabank-team
 spec:
   endpoints:
-  - honorLabels: true
-    port: web
+  - interval: 15s
+    port: grpc
+    scrapeTimeout: 15s
+  namespaceSelector:
+    matchNames:
+    - microservices
   selector:
     matchLabels:
-      operated-prometheus: "true"
----
+      operated-alertmanager: "true"

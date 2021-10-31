@@ -20,6 +20,7 @@ pipeline {
             /kaniko/executor --dockerfile `pwd`/src/frontend/Dockerfile \
                              --context `pwd`/src/frontend/ \
                              --destination=marinyuk/frontend:${BUILD_NUMBER}
+                             --destination=marinyuk/frontend:latest
             '''
           }
         }

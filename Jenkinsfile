@@ -20,6 +20,7 @@ pipeline {
             /kaniko/executor --dockerfile `pwd`/src/adservice/Dockerfile \
                              --context `pwd`/src/adservice/ \
                              --destination=marinyuk/adservice:${BUILD_NUMBER}
+                             --destination=marinyuk/adservice:latest
             '''
           }
         }

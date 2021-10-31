@@ -60,6 +60,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: currencyservice
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
@@ -78,8 +80,12 @@ metadata:
     team: rabitabank-team
 spec:
   endpoints:
-  - honorLabels: true
-    port: web
+  - interval: 15s
+    port: grpc
+    scrapeTimeout: 15s
+  namespaceSelector:
+    matchNames:
+    - microservices
   selector:
     matchLabels:
       operated-prometheus: "true"
