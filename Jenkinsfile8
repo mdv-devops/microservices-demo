@@ -19,7 +19,7 @@ pipeline {
             sh '''
             /kaniko/executor --dockerfile `pwd`/src/productcatalogservice/Dockerfile \
                              --context `pwd`/src/productcatalogservice/ \
-                             --destination=marinyuk/productcatalogservice:${BUILD_NUMBER}
+                             --destination=marinyuk/productcatalogservice:${BUILD_NUMBER} \
                              --destination=marinyuk/productcatalogservice:latest
             '''
           }

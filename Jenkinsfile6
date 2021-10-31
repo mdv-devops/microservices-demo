@@ -19,7 +19,7 @@ pipeline {
             sh '''
             /kaniko/executor --dockerfile `pwd`/src/loadgenerator/Dockerfile \
                              --context `pwd`/src/loadgenerator/ \
-                             --destination=marinyuk/loadgenerator:${BUILD_NUMBER}
+                             --destination=marinyuk/loadgenerator:${BUILD_NUMBER} \
                              --destination=marinyuk/loadgenerator:latest
             '''
           }

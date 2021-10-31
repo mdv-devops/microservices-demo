@@ -19,7 +19,7 @@ pipeline {
             sh '''
             /kaniko/executor --dockerfile `pwd`/src/shippingservice/Dockerfile \
                              --context `pwd`/src/shippingservice/ \
-                             --destination=marinyuk/shippingservice:${BUILD_NUMBER}
+                             --destination=marinyuk/shippingservice:${BUILD_NUMBER} \
                              --destination=marinyuk/shippingservice:latest
             '''
           }

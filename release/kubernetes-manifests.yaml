@@ -33,7 +33,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: marinyuk/emailservice:<TAG>
+        image: marinyuk/emailservice:latest
         - name: DISABLE_PROFILER
           value: "1"
         readinessProbe:
@@ -56,6 +56,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: emailservice
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
@@ -82,7 +84,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: marinyuk/checkoutservice:<TAG>
+          image: marinyuk/checkoutservice:latest
           ports:
           - containerPort: 5050
           readinessProbe:
@@ -126,6 +128,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: checkoutservice
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
@@ -152,7 +156,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: marinyuk/recommendationservice:<TAG>
+        image: marinyuk/recommendationservice:latest
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -186,6 +190,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: recommendationservice
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
@@ -213,7 +219,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: marinyuk/frontend:<TAG>
+          image: marinyuk/frontend:latest
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -273,6 +279,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
@@ -286,6 +294,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend-external
+  labels:
+    operated-prometheus: "true"
 spec:
   type: LoadBalancer
   selector:
@@ -312,7 +322,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: marinyuk/paymentservice:<TAG>
+        image: marinyuk/paymentservice:latest
         ports:
         - containerPort: 50051
         env:
@@ -336,6 +346,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: paymentservice
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
@@ -362,7 +374,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: marinyuk/productcatalogservice:<TAG>
+        image: marinyuk/productcatalogservice:latest
         ports:
         - containerPort: 3550
         env:
@@ -394,6 +406,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: productcatalogservice
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
@@ -420,7 +434,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: marinyuk/cartservice:<TAG>
+        image: marinyuk/cartservice:latest
         ports:
         - containerPort: 7070
         env:
@@ -447,6 +461,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cartservice
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
@@ -493,7 +509,7 @@ spec:
           value: "frontend:80"
       containers:
       - name: main
-        image: marinyuk/loadgenerator:<TAG>
+        image: marinyuk/loadgenerator:latest
         resources:
           requests:
             cpu: 300m
@@ -519,7 +535,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: marinyuk/currencyservice:<TAG>
+        image: marinyuk/currencyservice:latest
         ports:
         - name: grpc
           containerPort: 7000
@@ -550,6 +566,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: currencyservice
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
@@ -575,7 +593,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: server
-        image: marinyuk/shippingservice:<TAG>
+        image: marinyuk/shippingservice:latest
         ports:
         - containerPort: 50051
         env:
@@ -608,6 +626,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: shippingservice
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
@@ -661,6 +681,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-cart
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
@@ -687,7 +709,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: marinyuk/adservice:<TAG>
+        image: marinyuk/adservice:latest
         ports:
         - containerPort: 9555
         env:
@@ -721,6 +743,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: adservice
+  labels:
+    operated-prometheus: "true"
 spec:
   type: ClusterIP
   selector:
