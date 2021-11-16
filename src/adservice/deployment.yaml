@@ -15,7 +15,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: marinyuk/adservice:latest
+        image: marinyuk/adservice:<TAG>
         ports:
         - containerPort: 9555
         env:
