@@ -60,7 +60,6 @@ spec:
     port: 9555
     targetPort: 9555
 ---
-
 #apiVersion: monitoring.coreos.com/v1
 #kind: ServiceMonitor
 #metadata:
