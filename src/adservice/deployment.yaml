@@ -78,5 +78,3 @@ spec:
 #  selector:
 #    matchLabels:
 #      operated-prometheus: "true"
-
-
