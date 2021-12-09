@@ -65,7 +65,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: adservice
-  namespace: microservices
+  namespace: test
   labels:
     team: rabitabank-team
 spec:
@@ -75,7 +75,7 @@ spec:
     scrapeTimeout: 15s
   namespaceSelector:
     matchNames:
-    - microservices  
+    - test  
   selector:
     matchLabels:
       operated-prometheus: "true"
