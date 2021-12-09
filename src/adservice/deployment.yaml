@@ -61,21 +61,21 @@ spec:
     targetPort: 9555
 ---
 
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: adservice
-  namespace: test
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - interval: 15s
-    port: grpc
-    scrapeTimeout: 15s
-  namespaceSelector:
-    matchNames:
-    - test  
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
+#apiVersion: monitoring.coreos.com/v1
+#kind: ServiceMonitor
+#metadata:
+#  name: adservice
+#  namespace: test
+#  labels:
+#    team: rabitabank-team
+#spec:
+#  endpoints:
+#  - interval: 15s
+#    port: grpc
+#    scrapeTimeout: 15s
+#  namespaceSelector:
+#    matchNames:
+#    - test  
+#  selector:
+#    matchLabels:
+#      operated-prometheus: "true"
