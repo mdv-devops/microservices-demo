@@ -28,8 +28,6 @@ spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
-      imagePullSecrets:
-      - name: dockercred
       - name: server
         image: marinyuk/cartservice:<TAG>
         ports:
@@ -53,6 +51,8 @@ spec:
           periodSeconds: 10
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:7070", "-rpc-timeout=5s"]
+      imagePullSecrets:
+      - name: dockercred       
 ---
 apiVersion: v1
 kind: Service
