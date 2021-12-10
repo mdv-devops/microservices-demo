@@ -66,23 +66,23 @@ spec:
   - name: redis
     port: 6379
     targetPort: 6379
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: redis-cart
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - interval: 60s
-    port: redis
-    scrapeTimeout: 30s
-  namespaceSelector:
-    matchNames:
-    - microservices
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
----
+#---
+#apiVersion: monitoring.coreos.com/v1
+#kind: ServiceMonitor
+#metadata:
+#  name: redis-cart
+#  namespace: microservices
+#  labels:
+#    team: rabitabank-team
+#spec:
+#  endpoints:
+#  - interval: 60s
+#    port: redis
+#    scrapeTimeout: 30s
+#  namespaceSelector:
+#    matchNames:
+#    - microservices
+#  selector:
+#    matchLabels:
+#      operated-prometheus: "true"
+#---
