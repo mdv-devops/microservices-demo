@@ -28,9 +28,9 @@ spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
-      - name: server
       imagePullSecrets:
       - name: dockercred
+      - name: server
         image: marinyuk/cartservice:<TAG>
         ports:
         - containerPort: 7070
