@@ -29,6 +29,8 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
+        imagePullSecrets:
+        - name: dockercred
         image: marinyuk/cartservice:<TAG>
         ports:
         - containerPort: 7070
@@ -66,23 +68,23 @@ spec:
   - name: grpc
     port: 7070
     targetPort: 7070
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: cartservice
-  namespace: microservices
-  labels:
-    team: rabitabank-team
-spec:
-  endpoints:
-  - interval: 15s
-    port: grpc
-    scrapeTimeout: 15s
-  namespaceSelector:
-    matchNames:
-    - microservices
-  selector:
-    matchLabels:
-      operated-prometheus: "true"
----
+#---
+#apiVersion: monitoring.coreos.com/v1
+#kind: ServiceMonitor
+#metadata:
+#  name: cartservice
+#  namespace: microservices
+#  labels:
+#    team: rabitabank-team
+#spec:
+#  endpoints:
+#  - interval: 15s
+#    port: grpc
+#    scrapeTimeout: 15s
+#  namespaceSelector:
+#    matchNames:
+#    - microservices
+#  selector:
+#    matchLabels:
+#      operated-prometheus: "true"
+#---
