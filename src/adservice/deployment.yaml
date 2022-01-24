@@ -57,7 +57,7 @@ spec:
     app: adservice
   ports:
   - name: grpc
-    port: 9555
+    port: 9444
     targetPort: 9555
 ---
 #apiVersion: monitoring.coreos.com/v1
@@ -79,3 +79,6 @@ spec:
 #    matchLabels:
 #      operated-prometheus: "true"
 ---
+
+
+
