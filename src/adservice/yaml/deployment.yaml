@@ -15,7 +15,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: marinyuk/adservice:<TAG>
+        image: marinyuk/adservice:latest
         ports:
         - containerPort: 9555
         env:
@@ -57,28 +57,5 @@ spec:
     app: adservice
   ports:
   - name: grpc
-    port: 9444
+    port: 9555
     targetPort: 9555
----
-#apiVersion: monitoring.coreos.com/v1
-#kind: ServiceMonitor
-#metadata:
-#  name: adservice
-#  namespace: test
-#  labels:
-#    team: rabitabank-team
-#spec:
-#  endpoints:
-#  - interval: 15s
-#    port: grpc
-#    scrapeTimeout: 15s
-#  namespaceSelector:
-#    matchNames:
-#    - test  
-#  selector:
-#    matchLabels:
-#      operated-prometheus: "true"
----
-
-
-

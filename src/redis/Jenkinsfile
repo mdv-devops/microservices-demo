@@ -16,7 +16,7 @@ pipeline {
       steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'kubectl apply -f kubernetes-manifests/redis.yaml -n microservices'
+            sh 'kubectl apply -f /src/redis/yaml/deployment.yaml -n microservices'
           }
         }
       }

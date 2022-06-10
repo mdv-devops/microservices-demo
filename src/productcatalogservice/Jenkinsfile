@@ -31,8 +31,8 @@ pipeline {
       steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" kubernetes-manifests/productcatalogservice.yaml'
-            sh 'kubectl apply -f kubernetes-manifests/productcatalogservice.yaml -n microservices'
+            sh 'sed -i "s/latest/${BUILD_NUMBER}/" /src/productcatalogservice/yaml/deployment.yaml'
+            sh 'kubectl apply -f /src/productcatalogservice/yaml/deployment.yaml -n microservices'
           }
         }
       }
