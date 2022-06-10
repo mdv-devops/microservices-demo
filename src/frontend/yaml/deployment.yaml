@@ -105,17 +105,4 @@ spec:
         port:
           number: 80
 
----
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: frontend
-  namespace: istio-system
-spec:
-  host: frontend
-  trafficPolicy:
-    portLevelSettings:
-    - port:
-        number: 80
-      tls:
-        mode: DISABLE
+
