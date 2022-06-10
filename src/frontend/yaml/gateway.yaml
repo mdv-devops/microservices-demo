@@ -23,14 +23,14 @@ spec:
   selector:
     istio: ingressgateway 
   servers:
-#  - port:
-#      number: 80
-#      name: http
-#      protocol: HTTP
-#    tls:
-#      httpsRedirect: true
-#    hosts:
-#    - "shop.medevelop.studio"
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    tls:
+      httpsRedirect: true
+    hosts:
+    - "shop.medevelop.studio"
   - port:
       number: 443
       name: https
