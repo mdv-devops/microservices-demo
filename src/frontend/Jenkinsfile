@@ -33,6 +33,7 @@ pipeline {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
             sh 'sed -i "s/latest/${BUILD_NUMBER}/" src/frontend/yaml/deployment.yaml'
             sh 'kubectl apply -f src/frontend/yaml/deployment.yaml -n microservices'
+            sh 'kubectl apply -f src/frontend/yaml/gateway.yaml -n istio-system'
           }
         }
       }
