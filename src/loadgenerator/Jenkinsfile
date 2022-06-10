@@ -31,6 +31,7 @@ pipeline {
       steps {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'sed -i "s/latest/${BUILD_NUMBER}/" src/loadgenerator/yaml/deployment.yaml'
             sh 'kubectl apply -f src/loadgenerator/yaml/deployment.yaml -n microservices'
           }
         }
