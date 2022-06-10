@@ -32,6 +32,7 @@ pipeline {
         container('kubectl') {
           withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
             sh 'sed -i "s/latest/${BUILD_NUMBER}/" src/checkoutservice/yaml/deployment.yaml'
+            sh 'cat src/checkoutservice/yaml/deployment.yaml'
             sh 'kubectl apply -f src/checkoutservice/yaml/deployment.yaml -n microservices'
           }
         }
